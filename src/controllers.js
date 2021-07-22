@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { getTask } from './data';
 import { checkbox, editTask } from './index';
 
@@ -11,11 +12,9 @@ export function updateTask() {
               if (item.completed) {
                 item.completed = false;
                 localStorage.setItem('Task-list', JSON.stringify(getTask()));
-                location.reload();
               } else {
                 item.completed = true;
                 localStorage.setItem('Task-list', JSON.stringify(getTask()));
-                location.reload();
               }
             }
           });
@@ -31,7 +30,6 @@ export function deleteTask() {
     if (getTask().length > 0) {
       const filterCompliteTask = getTask().filter((task) => task.completed !== true);
       localStorage.setItem('Task-list', JSON.stringify(filterCompliteTask));
-      location.reload();
     }
   });
 }
@@ -60,6 +58,5 @@ export function deleteOne(deleteIcon, taskId) {
   deleteIcon.addEventListener('click', () => {
     const filteredTask = getTask().filter((task) => task.index !== taskId);
     localStorage.setItem('Task-list', JSON.stringify(filteredTask));
-    location.reload();
   });
 }
