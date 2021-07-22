@@ -1,7 +1,5 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/prefer-default-export */
-
+/* eslint-disable import/no-cycle */
 import { task, taskList } from './index';
 
 export function dragDrop() {
@@ -13,16 +11,6 @@ export function dragDrop() {
       item.classList.remove('dragging');
     });
   });
-  taskList.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    const afterElement = dragAfterElement(taskList, e.clientY);
-    const draggable = document.querySelector('.dragging');
-    if (afterElement === null) {
-      taskList.appendChild(draggable);
-    }
-    taskList.insertBefore(draggable, afterElement);
-  });
-
   function dragAfterElement(taskListContainer, y) {
     const draggableElements = [...taskListContainer.querySelectorAll('.task:not(.dragging)')];
 
@@ -38,4 +26,13 @@ export function dragDrop() {
       return closest;
     }, { offset: Number.NEGATIVE_INFINITY }).element;
   }
+  taskList.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const afterElement = dragAfterElement(taskList, e.clientY);
+    const draggable = document.querySelector('.dragging');
+    if (afterElement === null) {
+      taskList.appendChild(draggable);
+    }
+    taskList.insertBefore(draggable, afterElement);
+  });
 }

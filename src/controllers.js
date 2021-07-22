@@ -1,7 +1,3 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable import/no-cycle */
-
 import { getTask } from './data';
 import { checkbox, editTask } from './index';
 
